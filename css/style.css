@@ -1,0 +1,19 @@
+.jumbotron {
+  text-align: center;
+  margin-bottom: 1%;
+  color: red;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+#section-browse-dems h2 {
+  color: blue;
+
+}
+
+#myModalLabel {
+  text-align: center;
+}
+
