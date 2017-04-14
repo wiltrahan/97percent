@@ -1,19 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Asar');
+
+body {
+  background-color: #DEDCDA;
+}
+#mainPage {
+  height: 500px;
+  background-image: url("../house.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 350px;
+
+}
+
+
 .jumbotron {
   text-align: center;
   margin-bottom: 1%;
-  color: red;
+  background-color: rgba(0, 40, 104, 0.9);
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px -2px gray;
+}
+.jumbotron h1 {
+  color: #BF0A30;
+  font-family: 'Asar', serif;
+  font-size: 100px;
+}
+.jumbotron p {
+  color: #BF0A30;
+  font-family: 'Asar', serif;
 }
 
 ul li {
   list-style-type: none;
 }
 
-#section-browse-dems h2 {
-  color: blue;
+/*#section-browse-dems {
+  text-align: center;
 
-}
+}*/
 
 #myModalLabel {
   text-align: center;
+}
+
+#form-search {
+  text-align: center;
+}
+#findRep {
+  text-align: center;
+}
+
+.modal-body {
+  background-color: #DEDCDA;
+}
+.modal-body li {
+  font-size:  1.5em;
+}
+
+.modal-body li p {
+  font-weight: bold;
+}
+.modal-header {
+  background-color: rgba(0, 40, 104, 0.9);
+  color: #FFFFFF;
+  box-shadow: 0 2px 2px -2px gray;
+}
+.modal-header .close {
+  color: #BF0A30;
+}
+.modal-footer {
+  background-color: rgba(0, 40, 104, 0.9);
 }
 

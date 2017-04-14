@@ -127,7 +127,7 @@ function openModal(){
   $("#myModalLabel").empty();
   $("#modalBody ul").empty();
 
-  name = model.proPublica1[0].name;
+  name = $("<h3></h3>").text(model.proPublica1[0].name);
   nextElection = $("<p></p>").text(model.proPublica1[0].next_election);
 
   web = $("<p></p>").text(model.proPublica2[0].url);
@@ -140,7 +140,7 @@ function openModal(){
     .append("Next Election: ", nextElection,
             "Website: ", web,
             "Chamber: ", chamber,
-            "Votes With Party: ", percent,
+            "Percentage of Votes With Party: ", percent,
             "Party: ", party,
             "Phone: ", phone);
 
