@@ -104,7 +104,7 @@ function render(){
         $('#section-browse-dems ul').append(nameList);
 
       } else {
-          console.log("other");
+          console.log("something went wrong");
       }
     }
 //once button is clicked, district number, and state are sent to the first propublica api call
@@ -150,6 +150,7 @@ function openModal(){
   $('#modalBody ul').append(infoList);
   $("#myModal").modal();
 }
+
 
 
 

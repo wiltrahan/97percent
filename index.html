@@ -3,14 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-  <!-- <script type="text/javascript" src="scripts/jquery.ajax-cross-origin.min.js"></script> -->
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  <script type='text/javascript' src='config.js'></script>
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="bower_components/chartist/dist/chartist.min.css">
   <link rel="stylesheet" href="css/style.css">
   <title>97%</title>
 </head>
@@ -20,34 +15,39 @@
     <h1>97%</h1>
     <p class="text-muted">Of members in the House of Representatives got re-elected in 2016</p>
     <p>Crazy right?</p>
+    <div class="ct-chart ct-double-octave"></div>
+    <div id="squares">
+      <p class="sqText">Re-Elected: </p>
+      <div id="blueSquare"></div>
+      <p class="sqText" id="appText">Approval Rating: </p>
+      <div id="redSquare"></div>
+    </div>
+
   </header>
 
-<div id="mainPage">
+    <div class="container">
+      <div class="row">
+        <div id="mainPage">
+          <article class="col-md-6" id="about">
+              <p>Food truck actually banh mi, skateboard tattooed pour-over gochujang stumptown normcore forage ugh brooklyn. Shabby chic church-key gluten-free heirloom messenger bag, asymmetrical salvia. Green juice gentrify cardigan hot chicken normcore XOXO chia. Small batch fam green juice, stumptown pop-up af deep v wolf seitan pickled pok pok retro leggings. Schlitz seitan air plant, polaroid hexagon asymmetrical organic af kickstarter slow-carb plaid portland brunch synth. Craft beer sustainable flannel, tousled cliche meditation lomo fingerstache vinyl quinoa synth raw denim 8-bit cronut. La croix gochujang edison bulb kickstarter, knausgaard freegan cray chicharrones neutra portland cornhole biodiesel art party pinterest williamsburg.</p>
+          </article>
+          <div class="col-md-6">
+          <h3 id="findRep">Find Your Rep by Zip Code</h3>
+          <form id="form-search">
+            <input type="text" name="query">
+            <input type="submit" value="Search"/>
+          </form>
+          </div>
 
-<div class="row">
-  <div class="container">
-
-  <div class="container">
-  <h3 id="findRep">Find Your Rep by Zip Code</h3>
-    <form id="form-search">
-      <input type="text" name="query">
-      <input type="submit" value="Search"/>
-    </form>
-  </div>
-
-
-    <section id="section-browse-dems" class="col-md-6">
-      <header>
-        <!-- <h2>Democrats</h2> -->
-        <!-- <hr/> -->
-      </header>
-      <ul></ul>
-    </section>
-  </div>
-</div>
-
-</div>
+          <section id="section-browse-dems" class="col-md-6">
+            <header></header>
+            <ul></ul>
+          </section>
+        </div>
+      </div>
+    </div>
 <!-- Button trigger modal -->
+
 
 
 <!-- Modal -->
@@ -71,10 +71,14 @@
 
 
 
-
-
-
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <!-- <script type="text/javascript" src="scripts/jquery.ajax-cross-origin.min.js"></script> -->
+  <script src="bower_components/chartist/dist/chartist.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src='config.js'></script>
+  <script src="scripts/customgraph.js"></script>
   <script src="scripts/app.js"></script>
+
   <script>
     $("#form-search").submit(function(evt) {
       evt.preventDefault();

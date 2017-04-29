@@ -26,14 +26,14 @@ var options = {
   axisX: {
     showGrid: false,
   },
-  width: 700,
+  width: 1440,
   height: 340,
 
 };
 
 var responsiveOptions = [
   ['screen and (min-width: 641px) and (max-width: 1024px)', {
-    seriesBarDistance: 10,
+    seriesBarDistance: 5,
     axisX: {
       labelInterpolationFnc: function (value) {
         return value;
