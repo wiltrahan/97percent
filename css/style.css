@@ -1,16 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Asar');
 
 body {
-  background-color: #DEDCDA;
+  background: linear-gradient(white, grey);
+
 }
 #mainPage {
-  height: 500px;
-  /*background-image: url("../house.png");*/
+  height: 720px;
+  padding-top: 5px;
+  /*border: 1px solid black;*/
+  background-image: url("../house.png");
   background-repeat: no-repeat;
-  background-position: right bottom;
-  background-size: 350px;
-  margin-top: 150px;
+  background-position: bottom;
+  background-size: 450px;
 
+}
+#test {
+  /*color: blue;*/
+  text-align: center;
+  padding-bottom: 30px;
 }
 
 
@@ -18,12 +25,15 @@ body {
   text-align: center;
   margin-bottom: 1%;
   padding-bottom: 5%;
-  /*background-color: rgba(0, 40, 104, 0.9);*/
-  background-color: #DEDCDA;
-  height: 660px;
-  /*border-radius: 10px;
-  box-shadow: 0 2px 8px -2px gray;*/
+  /*background-color: #DEDCDA;*/
+  height: 100%;
+  background: linear-gradient(grey, white),
+  url("../capitol.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: screen;
 }
+
 .jumbotron h1 {
   color: #BF0A30;
   font-family: 'Asar', serif;
@@ -45,9 +55,14 @@ ul li {
 
 #form-search {
   text-align: center;
+
 }
 #findRep {
   text-align: center;
+
+}
+.repSearch {
+  height: 339px;
 }
 
 .modal-body {
@@ -73,23 +88,29 @@ ul li {
 }
 
 /****GRAPH****/
+#chart {
+  /*border: 1px solid black;*/
+}
 .ct-bar {
-  stroke: #4ECDC4;
+  /*stroke: #4ECDC4;*/
   stroke-width: 30px;
 
 }
 
 .ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut {
   stroke: rgb(0, 40, 104);
+  /*stroke-dasharray: 10px;*/
 
 }
 .ct-series-b .ct-bar, .ct-series-b .ct-line, .ct-series-b .ct-point, .ct-series-b .ct-slice-donut {
     stroke: #BF0A30;
+    /*stroke-dasharray: 10px;*/
 }
 
 .ct-label {
   color: black;
   font-size: 1em;
+  font-weight: bold;
 }
 .tooltip {
   position: absolute;
@@ -135,9 +156,36 @@ p.sqText {
   padding-left: 10px;
   color: black;
 }
+/* GRAPH ENDS */
+
 /*#searchForm {
   float: right;
 }
 #about {
   float: left;
 }*/
+.btn-default {
+   box-shadow: 1px 2px 5px #000000;
+}
+
+#info-list {
+  font-weight: bold;
+  font-size: 1.25em;
+}
+#info-list h3 {
+  text-align: center;
+}
+
+#info-list li:nth-child(6){
+  font-size: 1.35em;
+}
+
+li.info-items {
+  margin-top: 10px;
+  list-style-type: circle;
+}
+.navbar {
+  background-color: rgba(204, 202, 200, 0.2);
+  border-bottom: 0;
+  /*padding: 16px;*/
+}
