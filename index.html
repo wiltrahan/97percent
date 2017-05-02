@@ -35,7 +35,7 @@
                         <a class="page-scroll" href="#about">About</a>
                     </li>
                     <li class="">
-                        <a class="page-scroll" href="#services">Services</a>
+                        <a class="page-scroll" href="#about">Find Your Rep</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
@@ -51,8 +51,8 @@
 
   <header class="jumbotron" id="landing">
     <h1>97%</h1>
-    <p class="text-muted">Of members in the House of Representatives got re-elected in 2016</p>
-    <p>Crazy right?</p>
+    <p class="text-muted">Of members in the House of Representatives got re-elected in 2016...</p>
+    <p id="yes">yes, you read that right</p>
     <div class="ct-chart ct-double-octave" id="chart"></div>
     <div id="squares">
       <p class="sqText">Re-Elected: </p>
@@ -63,6 +63,7 @@
     <a class="btn btn-default page-scroll" href="#mainPage">MORE</a>
   </header>
 
+  <!-- about page -->
     <div class="container">
       <div class="row">
         <div id="mainPage">
@@ -70,16 +71,16 @@
           <article class="col-md-6" id="about">
 
               <ul id="info-list">
-              <h3>Fun Facts</h3>
+              <h3 class="aboutHeaders">Fun Facts</h3>
                 <li class="info-items">Congress job approval at 19% before start of 115th Session.</li>
-                <li class="info-items">House of Representatives members re-elected at 97% rate before the 115th Session.</li>
+                <li class="info-items">House of Representatives members re-elected at 97% rate in 2016, before the 115th Session.</li>
                 <li class="info-items">35.9% of the voting eligible population voted in the 2014 mid-term election.</li>
                 <li class="info-items">Republicans hold 238 seats in the House, while the Democratic Party holds 193.</li>
                 <li class="info-items">ALL 435 SEATS ARE UP FOR GRABS ON NOVEMBER 6TH, 2018!</li>
               </ul>
           </article>
           <div class="col-md-6 repSearch">
-            <h3 id="findRep">Find Your Rep by Zip Code</h3>
+            <h3 id="findRep" class="aboutHeaders">Find Your Rep by Zip Code</h3>
             <form id="form-search">
               <input type="text" name="query">
               <input type="submit" value="Search"/>
@@ -118,9 +119,16 @@
     </div>
   </div>
 </div>
+<!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Info Sourced From: <a href="https://www.opensecrets.org/overview/reelect.php">Open Secrets</a>,
+        <a href="http://www.gallup.com/poll/1600/congress-public.aspx">Gallup</a>,
+        <a href="http://www.rasmussenreports.com/public_content/political_commentary/commentary_by_larry_j_sabato/how_midterms_do_and_do_not_differ_from_presidential_elections">Rasmussen Reports</a></p>
+      </div>
+    </footer>
 
-
-
+<!-- scripts -->
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <!-- <script type="text/javascript" src="scripts/jquery.ajax-cross-origin.min.js"></script> -->
   <script src="bower_components/chartist/dist/chartist.min.js"></script>

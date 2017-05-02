@@ -27,7 +27,7 @@ var options = {
     showGrid: false,
   },
   width: 1440,
-  height: 340,
+  height: 290,
 
 };
 

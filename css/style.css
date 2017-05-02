@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Asar');
+@import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One');
+@import url('https://fonts.googleapis.com/css?family=Cardo');
 
 body {
   background: linear-gradient(white, grey);
@@ -8,23 +10,28 @@ body {
   height: 720px;
   padding-top: 5px;
   /*border: 1px solid black;*/
-  background-image: url("../house.png");
+  /*background-image: url("../house.png");
   background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: 450px;
+  background-position: bottom left;
+  background-size: 450px;*/
 
 }
 #test {
   /*color: blue;*/
   text-align: center;
   padding-bottom: 30px;
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-size: 100px;
+}
+.aboutHeaders {
+  font-family: 'Cardo', serif;
 }
 
 
 .jumbotron {
   text-align: center;
   margin-bottom: 1%;
-  padding-bottom: 5%;
+  padding-bottom: 15%;
   /*background-color: #DEDCDA;*/
   height: 100%;
   background: linear-gradient(grey, white),
@@ -34,14 +41,20 @@ body {
   background-blend-mode: screen;
 }
 
+#yes {
+  color: black;
+  font-size: 1.25em;
+}
+
 .jumbotron h1 {
   color: #BF0A30;
-  font-family: 'Asar', serif;
-  font-size: 100px;
+  /*font-family: 'Asar', serif;*/
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-size: 200px;
 }
 .jumbotron p {
   color: #BF0A30;
-  font-family: 'Asar', serif;
+  font-family: 'Cardo', serif;
 }
 
 ul li {
@@ -132,6 +145,7 @@ ul li {
 #squares {
   display: flex;
   justify-content: center;
+  margin-top: -70px;
 }
 
 #blueSquare {
@@ -183,9 +197,32 @@ p.sqText {
 li.info-items {
   margin-top: 10px;
   list-style-type: circle;
+  font-family: 'Cardo', serif;
 }
 .navbar {
   background-color: rgba(204, 202, 200, 0.2);
   border-bottom: 0;
   /*padding: 16px;*/
 }
+
+#section-browse-dems {
+  padding: 10px;
+  margin-left: 50px;
+}
+#section-browse-dems h5 {
+  font-size: 1.5em;
+}
+#section-browse-dems p {
+  font-size: 1.2em;
+}
+.footer {
+    /*position: absolute;*/
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(204, 202, 200, 0.2);
+}
+.footer p {
+  padding-top: 10px;
+}
+
