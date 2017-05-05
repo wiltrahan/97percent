@@ -86,12 +86,14 @@ function timesCall(query) {
     'begin_date' : "20120101",
     'sort' : "newest"
   });
+
   $.ajax({
     url: url,
     method: 'GET',
   }).done(function(result) {
     console.log(result);
     model.timesArticles = result.response;
+    openNewsModal();
   }).fail(function(err) {
     throw err;
   });
@@ -144,7 +146,6 @@ function render(){
       district = model.houseMembers[district].district;
       state = model.houseMembers[state].state;
       proPublicaCallOne(district, state);
-      console.log(name.text());
       event.preventDefault();
     });
 
@@ -191,3 +192,14 @@ function openModal(){
 
 
 
+function openNewsModal() {
+  var name, headline, date, lead, web;
+  $("#newsModalLabel").empty();
+  $("#modalBody").empty();
+
+  name = $("<h3></h3>").text(model.stateRequestArr[0].results[0].name);
+
+  $("#newsModalLabel").append(name);
+  $("#myNewsModal").modal();
+
+}
