@@ -1,11 +1,13 @@
 var myKey = config.token;
 
+
 var model = {
   proPublica1: [],
   proPublica2: [],
   stateRequestArr: [],
   moreInfo: [],
-  houseMembers: []
+  houseMembers: [],
+  timesArticles: []
 };
 
 //first call...gets members by zip, pushes into the stateRequest array,
@@ -47,6 +49,7 @@ function proPublicaCallOne(district, state) {
 
       model.proPublica1 = data.results;
       proPublicaCallTwo(model.proPublica1[0].id);
+
     }
   });
 
@@ -71,8 +74,29 @@ function proPublicaCallTwo(member_id, callback){
       openModal();
     }
   });
-
 };
+
+// TIMESCALL*****
+
+function timesCall(query) {
+  var url = timesConfig.root;
+  url += '?' + $.param({
+    'api-key' : timesConfig.token,
+    'q' : query,
+    'begin_date' : "20120101",
+    'sort' : "newest"
+  });
+  $.ajax({
+    url: url,
+    method: 'GET',
+  }).done(function(result) {
+    console.log(result);
+    model.timesArticles = result.response;
+  }).fail(function(err) {
+    throw err;
+  });
+};
+
 
 
 //shows main page listing of members that it gets from the stateRequest array
@@ -98,16 +122,21 @@ function render(){
         moreInfoBtn = $("<button></button>")
           .text("More Info")
           .attr('id', i)
-          .attr('class', 'moreInfo');
+          .attr('class', 'moreInfo')
+        newsBtn = $("<button></button>")
+          .text("Recent News")
+          .attr('id', i)
+          .attr('class', 'newsBtn');
         nameList = $("<li></li>")
-          .append(name, party, office, phone, moreInfoBtn, '<hr>');
+          .append(name, party, office, phone, moreInfoBtn, newsBtn, '<hr>');
         $('#section-browse-dems ul').append(nameList);
 
       } else {
-          console.log("something went wrong");
+          console.log("senate");
       }
     }
-//once button is clicked, district number, and state are sent to the first propublica api call
+    //once button is clicked, district number, and state are sent to the first propublica api call
+    //more info button
     $("#section-browse-dems").on('click', '.moreInfo', function(event) {
 
       district = this.id;
@@ -115,8 +144,17 @@ function render(){
       district = model.houseMembers[district].district;
       state = model.houseMembers[state].state;
       proPublicaCallOne(district, state);
+      console.log(name.text());
       event.preventDefault();
     });
+
+    //new york times button
+    $("#section-browse-dems").on('click', '.newsBtn', function(event) {
+      timesCall(name.text());
+      event.preventDefault();
+    });
+
+
 };
 
 //the modal is opened, and gets all the needed info from the proPublica2 array
@@ -149,9 +187,7 @@ function openModal(){
   $("#myModalLabel").append(name);
   $('#modalBody ul').append(infoList);
   $("#myModal").modal();
-}
-
-
+};
 
 
 

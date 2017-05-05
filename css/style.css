@@ -25,6 +25,7 @@ body {
 }
 .aboutHeaders {
   font-family: 'Cardo', serif;
+  font-weight: bold;
 }
 
 
@@ -44,6 +45,10 @@ body {
 #yes {
   color: black;
   font-size: 1.25em;
+}
+
+#subHead {
+  font-size: 2em;
 }
 
 .jumbotron h1 {
@@ -111,19 +116,20 @@ ul li {
 }
 
 .ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut {
-  stroke: rgb(0, 40, 104);
-  /*stroke-dasharray: 10px;*/
+  stroke: rgba(0, 40, 104, 0.8);
+  /*stroke-dasharray: 0.5px;*/
 
 }
 .ct-series-b .ct-bar, .ct-series-b .ct-line, .ct-series-b .ct-point, .ct-series-b .ct-slice-donut {
-    stroke: #BF0A30;
-    /*stroke-dasharray: 10px;*/
+    stroke: rgba(191, 10, 48, 0.9);
+    /*stroke-dasharray: 0.5px;*/
 }
 
 .ct-label {
   color: black;
   font-size: 1em;
   font-weight: bold;
+  font-family: 'Cardo', serif;
 }
 .tooltip {
   position: absolute;
@@ -151,14 +157,14 @@ ul li {
 #blueSquare {
   width: 15px;
   height: 15px;
-  background: rgb(0, 40, 104);
+  background: rgba(0, 40, 104, 0.8);
   margin-top: 7px;
 }
 
 #redSquare {
   width: 15px;
   height: 15px;
-  background: #BF0A30;
+  background: rgba(191, 10, 48, 0.9);
   margin-top: 7px;
 }
 
@@ -226,3 +232,12 @@ li.info-items {
   padding-top: 10px;
 }
 
+.newsBtn {
+  padding: 10px;
+  margin-left: 5px;
+}
+
+.moreInfo {
+  padding: 10px;
+  margin-right: 5px;
+}

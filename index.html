@@ -51,7 +51,7 @@
 
   <header class="jumbotron" id="landing">
     <h1>97%</h1>
-    <p class="text-muted">Of members in the House of Representatives got re-elected in 2016...</p>
+    <p class="text-muted" id="subHead">Of members in the House of Representatives got re-elected in 2016...</p>
     <p id="yes">yes, you read that right</p>
     <div class="ct-chart ct-double-octave" id="chart"></div>
     <div id="squares">
@@ -119,6 +119,9 @@
     </div>
   </div>
 </div>
+
+
+
 <!-- Footer -->
     <footer class="footer">
       <div class="container">
@@ -130,12 +133,12 @@
 
 <!-- scripts -->
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-  <!-- <script type="text/javascript" src="scripts/jquery.ajax-cross-origin.min.js"></script> -->
+  <!-- <script src="scripts/jquery.ajax-cross-origin.min.js"></script> -->
   <script src="bower_components/chartist/dist/chartist.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="scripts/jquery.easing.min.js"></script>
   <script src="scripts/scrolling-nav.js"></script>
-  <script type='text/javascript' src='config.js'></script>
+  <script src='config.js'></script>
   <script src="scripts/customgraph.js"></script>
   <script src="scripts/app.js"></script>
 
@@ -145,6 +148,9 @@
       var query = $("#form-search input[name=query]").val();
       searchMembersByZip(query, render);
     });
+
   </script>
 </body>
 </html>
+
+
