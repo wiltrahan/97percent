@@ -1,5 +1,5 @@
 var myKey = config.token;
-
+var timesKey = timesConfig.token;
 
 var model = {
   proPublica1: [],
@@ -67,7 +67,6 @@ function proPublicaCallTwo(member_id, callback){
       xhr.setRequestHeader("X-API-Key", myKey);
     },
     success: function(data) {
-      console.log("WE GOT A SECOND RESPONSE!!");
       console.log(data);
 
       model.proPublica2 = data.results;
@@ -81,7 +80,7 @@ function proPublicaCallTwo(member_id, callback){
 function timesCall(query) {
   var url = timesConfig.root;
   url += '?' + $.param({
-    'api-key' : timesConfig.token,
+    'api-key' : timesKey,
     'q' : query,
     'begin_date' : "20120101",
     'sort' : "newest"
@@ -92,8 +91,9 @@ function timesCall(query) {
     method: 'GET',
   }).done(function(result) {
     console.log(result);
-    model.timesArticles = result.response;
-    openNewsModal();
+    console.log("news");
+    model.timesArticles = result.response.docs;
+
   }).fail(function(err) {
     throw err;
   });
@@ -125,12 +125,8 @@ function render(){
           .text("More Info")
           .attr('id', i)
           .attr('class', 'moreInfo')
-        newsBtn = $("<button></button>")
-          .text("Recent News")
-          .attr('id', i)
-          .attr('class', 'newsBtn');
         nameList = $("<li></li>")
-          .append(name, party, office, phone, moreInfoBtn, newsBtn, '<hr>');
+          .append(name, party, office, phone, moreInfoBtn,'<hr>');
         $('#section-browse-dems ul').append(nameList);
 
       } else {
@@ -146,14 +142,15 @@ function render(){
       district = model.houseMembers[district].district;
       state = model.houseMembers[state].state;
       proPublicaCallOne(district, state);
+      timesCall(name.text());
       event.preventDefault();
     });
 
     //new york times button
-    $("#section-browse-dems").on('click', '.newsBtn', function(event) {
-      timesCall(name.text());
-      event.preventDefault();
-    });
+    // $("#section-browse-dems").on('click', '.newsBtn', function(event) {
+    //   timesCall(name.text());
+    //   event.preventDefault();
+    // });
 
 
 };
@@ -167,7 +164,7 @@ function openModal(){
   $("#modalBody ul").empty();
 
   name = $("<h3></h3>").text(model.proPublica1[0].name);
-  nextElection = $("<p></p>").text(model.proPublica1[0].next_election);
+  // nextElection = $("<p></p>").text(model.proPublica1[0].next_election);
 
   web = $("<p></p>").text(model.proPublica2[0].url);
   chamber = $("<p></p>").text(model.proPublica2[0].roles[0].chamber);
@@ -176,12 +173,12 @@ function openModal(){
   phone = $("<p></p>").text(model.proPublica2[0].roles[0].phone);
 
   infoList = $("<li></li>")
-    .append("Next Election: ", nextElection,
-            "Website: ", web,
+    .append("Website: ", web,
             "Chamber: ", chamber,
             "Percentage of Votes With Party: ", percent,
             "Party: ", party,
-            "Phone: ", phone);
+            "Phone: ", phone
+            );
 
 
 
@@ -203,3 +200,35 @@ function openNewsModal() {
   $("#myNewsModal").modal();
 
 }
+
+// COUNTDOWN TIMER
+
+// Set the date we're counting down to
+var countDownDate = new Date("Nov 6, 2018 08:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="demo"
+    document.getElementById("clock").innerHTML = days + "<span class='cdText'>days</span> " + hours + "<span class='cdText'>hours</span> "
+    + minutes + "<span class='cdText'>minutes</span> " + seconds + "<span class='cdText'>seconds</span> ";
+
+    // If the count down is over, write some text
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("clock").innerHTML = "HOPE YOU VOTED!";
+    }
+}, 1000);
+

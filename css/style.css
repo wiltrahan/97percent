@@ -241,3 +241,21 @@ li.info-items {
   padding: 10px;
   margin-right: 5px;
 }
+
+p#clock {
+  text-align: center;
+  font-size: 60px;
+font-family: 'Pathway Gothic One', sans-serif;
+
+}
+ul#countdown {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.50em;
+  margin-top: 20px;
+  font-family: 'Cardo', serif;
+
+}
+span.cdText {
+  font-size: .50em;
+}
