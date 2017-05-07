@@ -4,11 +4,11 @@
 
 body {
   background: linear-gradient(white, grey);
-
 }
 #mainPage {
-  height: 720px;
+  min-height: 720px;
   padding-top: 5px;
+
   /*border: 1px solid black;*/
   /*background-image: url("../house.png");
   background-repeat: no-repeat;
@@ -16,13 +16,7 @@ body {
   background-size: 450px;*/
 
 }
-#test {
-  /*color: blue;*/
-  text-align: center;
-  padding-bottom: 30px;
-  font-family: 'Pathway Gothic One', sans-serif;
-  font-size: 100px;
-}
+
 .aboutHeaders {
   font-family: 'Cardo', serif;
   font-weight: bold;
@@ -80,7 +74,8 @@ ul li {
 
 }
 .repSearch {
-  height: 339px;
+  /*min-height: 339px;*/
+  /*clear: both;*/
 }
 
 .modal-body {

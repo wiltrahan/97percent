@@ -67,7 +67,6 @@
     <div class="container">
       <div class="row">
         <div id="mainPage">
-        <!-- <h1 id="test">Get Involved!</h1> -->
         <ul id="countdown">
         <p id="clock"></p>
           <li>Until the midterm election</li>
@@ -88,10 +87,16 @@
                 <li class="info-items">ALL 435 SEATS ARE UP FOR GRABS ON NOVEMBER 6TH, 2018!</li>
               </ul>
           </article>
+
+
+
           <div class="col-md-6 repSearch">
-            <h3 id="findRep" class="aboutHeaders">Find Your Rep by Zip Code</h3>
+            <h3 id="findRep" class="aboutHeaders">Find Your Rep by Address</h3>
             <form id="form-search">
-              <input type="text" name="query">
+              <label>Street Address</label><input type="text" name="query">
+              <label>City</label><input type="text" name="query">
+              <label>State</label><input type="text" name="query">
+              <label>Zip</label><input type="text" name="query">
               <input type="submit" value="Search"/>
             </form>
 
@@ -155,7 +160,8 @@
     $("#form-search").submit(function(evt) {
       evt.preventDefault();
       var query = $("#form-search input[name=query]").val();
-      searchMembersByZip(query, render);
+      // searchMembersByZip(query, render);
+      googleCivicsSearch(query, render);
     });
 
   </script>
