@@ -12,45 +12,43 @@ var model = {
 
 //first call...gets members by zip, pushes into the stateRequest array,
 //calls render as the callback function
-function searchMembersByZip(query, callback){
+// function searchMembersByZip(query, callback){
 
+//   $.ajax({
+//     type: 'GET',
+//     url: 'http://whoismyrepresentative.com/getall_mems.php?zip=' + query + '&output=json',
+//     success: function(data){
+//       var results = JSON.parse(data);
+
+//       model.stateRequestArr.push(results);
+
+//       callback();
+//     }
+//   });
+// };
+
+function googleCivicsSearch(line1, city, state, zip, callback) {
+
+  var address = line1+city+state+zip;
   $.ajax({
-    type: 'GET',
-    url: 'http://whoismyrepresentative.com/getall_mems.php?zip=' + query + '&output=json',
-    success: function(data){
-      var results = JSON.parse(data);
+    url: googleSearch.root,
+    data: {
+      key : googleSearch.token,
+      address : address,
+      levels : 'country',
+      roles : 'legislatorLowerBody'
 
-      model.stateRequestArr.push(results);
-
+    },
+    success : function(result) {
+      console.log(result);
+      model.googleCivics = result.officials;
       callback();
+    },
+    error : function(err) {
+      throw err;
     }
   });
 };
-
-function googleCivicsSearch(query, callback) {
-  var url = googleSearch.root;
-  url += '?' + $.param({
-    'key' : googleSearch.token,
-    'address' : query,
-    'levels' : 'country',
-    'roles' : "legislatorLowerBody"
-
-  });
-
-  $.ajax({
-    url: url,
-    method: 'GET',
-  }).done(function(result) {
-    console.log(result);
-    model.googleCivics = result.officials;
-    callback();
-
-  }).fail(function(err) {
-    throw err;
-  });
-};
-
-// googleCivicsSearch();
 //once info is gotten from the button click, the data is sent to the proPublica1 array
 //the id is then sent to the second propublica call
 //this call gets all members by district & state
@@ -98,37 +96,11 @@ function proPublicaCallTwo(member_id, callback){
   });
 };
 
-// TIMESCALL*****
-
-function timesCall(query) {
-  var url = timesConfig.root;
-  url += '?' + $.param({
-    'api-key' : timesKey,
-    'q' : query,
-    'begin_date' : "20120101",
-    'sort' : "newest"
-  });
-
-  $.ajax({
-    url: url,
-    method: 'GET',
-  }).done(function(result) {
-    console.log(result);
-    console.log("news");
-    model.timesArticles = result.response.docs;
-
-  }).fail(function(err) {
-    throw err;
-  });
-};
-
-
-
 //shows main page listing of members that it gets from the stateRequest array
 //pushes all members NOT in the senate (house only) into the house members array
 //gives each button a unique id to correspond to the representative in the array
+//
 // function render(){
-
 //   $("#section-browse-dems ul").empty();
 
 //   var name, party, office, phone, moreInfoBtn, nameList, txt, district, state;
@@ -175,18 +147,12 @@ function render(){
 
   $("#section-browse-dems ul").empty();
 
-  var name, party, phone, email;
-
-
-  // for(var i = 0; i < model.googleCivics.length; i++){
+        var name, party, phone, email;
 
         name = $("<h5></h5>").text(model.googleCivics[0].name);
         party = $("<p></p>").text(model.googleCivics[0].party);
         phone = $("<p></p>").text(model.googleCivics[0].phones[0]);
-        email = $("<p></p>").text(model.googleCivics[0].emails[0]);
-
-        // office = $("<p></p>").text(model.stateRequestArr[0].results[i].office);
-        // phone = $("<p></p>").text(model.stateRequestArr[0].results[i].phone);
+        // email = $("<p></p>").text(model.googleCivics[0].emails[0]);
         moreInfoBtn = $("<button></button>")
           .text("More Info")
           // .attr('id', i)
@@ -198,48 +164,55 @@ function render(){
     // }
     //once button is clicked, district number, and state are sent to the first propublica api call
     //more info button
-    // $("#section-browse-dems").on('click', '.moreInfo', function(event) {
+    $("#section-browse-dems").on('click', '.moreInfo', function(event) {
 
-    //   district = this.id;
-    //   state = this.id;
-    //   district = model.houseMembers[district].district;
-    //   state = model.houseMembers[state].state;
-    //   proPublicaCallOne(district, state);
-    //   timesCall(name.text());
-    //   event.preventDefault();
-    // });
+      // district = this.id;
+      // state = this.id;
+      // district = model.houseMembers[district].district;
+      // state = model.houseMembers[state].state;
+      // proPublicaCallOne(district, state);
+      // timesCall(name.text());
+      openModal();
+      event.preventDefault();
+    });
 };
 
 //the modal is opened, and gets all the needed info from the proPublica2 array
 //rendering it on the page.
 function openModal(){
-  var name, nextElection, web, chamber, percent, party, phone, infoList;
+  var name, nextElection, party,
+      phone, officeAddress, city,
+      state, zip, fullAddress, twitter, infoList;
 
   $("#myModalLabel").empty();
   $("#modalBody ul").empty();
 
-  name = $("<h3></h3>").text(model.proPublica1[0].name);
+  // name = $("<h3></h3>").text(model.proPublica1[0].name);
   // nextElection = $("<p></p>").text(model.proPublica1[0].next_election);
+  name = $("<h3></h3>").text(model.googleCivics[0].name);
+  party = $("<p></p>").text(model.googleCivics[0].party);
+  phone = $("<p></p>").text(model.googleCivics[0].phones[0]);
+  officeAddress = $("<p></p>").text(model.googleCivics[0].address[0].line1);
+  city = $("<p></p>").text(model.googleCivics[0].address[0].city);
+  state = $("<p></p>").text(model.googleCivics[0].address[0].state);
+  zip = $("<p></p>").text(model.googleCivics[0].address[0].zip);
+  twitter = $("<p></p>").text(model.googleCivics[0].channels[1].id);
 
-  web = $("<p></p>").text(model.proPublica2[0].url);
-  chamber = $("<p></p>").text(model.proPublica2[0].roles[0].chamber);
-  percent = $("<p></p>").text(model.proPublica2[0].roles[0].votes_with_party_pct);
-  party = $("<p></p>").text(model.proPublica2[0].roles[0].party);
-  phone = $("<p></p>").text(model.proPublica2[0].roles[0].phone);
+  fullAddress = $("<p></p>").text(officeAddress.text() + '\n ' + city.text() + ' ' + state.text() + '\n' + zip.text());
 
-  if (party.text() == 'D'){
-    party = '<p>Democratic</p>'
-  }
-  else if (party.text() == 'R'){
-    party = '<p>Republican</p>'
-  }
+
+  // web = $("<p></p>").text(model.proPublica2[0].url);
+  // chamber = $("<p></p>").text(model.proPublica2[0].roles[0].chamber);
+  // percent = $("<p></p>").text(model.proPublica2[0].roles[0].votes_with_party_pct);
+  // party = $("<p></p>").text(model.proPublica2[0].roles[0].party);
+  // phone = $("<p></p>").text(model.proPublica2[0].roles[0].phone);
 
   infoList = $("<li></li>")
-    .append("Website: ", web,
-            "Chamber: ", chamber,
-            "Percentage of Votes With Party: ", percent,
+    .append(
             "Party: ", party,
-            "Phone: ", phone
+            "Phone: ", phone,
+            "Twitter: ", twitter,
+            "Office Address: ", fullAddress
             );
 
 
@@ -280,4 +253,7 @@ var x = setInterval(function() {
         document.getElementById("clock").innerHTML = "HOPE YOU VOTED!";
     }
 }, 1000);
+
+
+
 

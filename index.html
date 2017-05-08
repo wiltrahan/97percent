@@ -92,6 +92,7 @@
 
           <div class="col-md-6 repSearch">
             <h3 id="findRep" class="aboutHeaders">Find Your Rep by Address</h3>
+
             <form id="form-search">
               <label>Street Address</label><input type="text" name="query">
               <label>City</label><input type="text" name="query">
@@ -104,14 +105,17 @@
             <header></header>
             <ul></ul>
           </section>
-
           </div>
 
 
         </div>
+
       </div>
     </div>
 <!-- Button trigger modal -->
+
+
+
 
 
 
@@ -159,13 +163,18 @@
   <script>
     $("#form-search").submit(function(evt) {
       evt.preventDefault();
-      var query = $("#form-search input[name=query]").val();
-      // searchMembersByZip(query, render);
-      googleCivicsSearch(query, render);
+      var query = $("#form-search").serializeArray();
+      var line1 = query[0].value;
+      var city = query[1].value;
+      var state = query[2].value;
+      var zip = query[3].value;
+      googleCivicsSearch(line1, city, state, zip, render);
     });
-
   </script>
 </body>
 </html>
+
+
+
 
 
