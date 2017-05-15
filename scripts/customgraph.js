@@ -26,7 +26,7 @@ var options = {
   axisX: {
     showGrid: false,
   },
-  width: 1440,
+  width: 1360,
   height: 290,
 
 };

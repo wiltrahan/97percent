@@ -4,28 +4,9 @@ var myKey = config.token;
 var model = {
   proPublica1: [],
   proPublica2: [],
-  stateRequestArr: [],
-  moreInfo: [],
-  houseMembers: [],
   googleCivics: []
 };
 
-//first call...gets members by zip, pushes into the stateRequest array,
-//calls render as the callback function
-// function searchMembersByZip(query, callback){
-
-//   $.ajax({
-//     type: 'GET',
-//     url: 'http://whoismyrepresentative.com/getall_mems.php?zip=' + query + '&output=json',
-//     success: function(data){
-//       var results = JSON.parse(data);
-
-//       model.stateRequestArr.push(results);
-
-//       callback();
-//     }
-//   });
-// };
 
 function googleCivicsSearch(line1, city, state, zip, callback) {
 
@@ -45,6 +26,7 @@ function googleCivicsSearch(line1, city, state, zip, callback) {
       callback();
     },
     error : function(err) {
+      alert("Address not found, please try again!");
       throw err;
     }
   });
@@ -96,99 +78,18 @@ function proPublicaCallTwo(member_id, callback){
   });
 };
 
-//shows main page listing of members that it gets from the stateRequest array
-//pushes all members NOT in the senate (house only) into the house members array
-//gives each button a unique id to correspond to the representative in the array
-//
-// function render(){
-//   $("#section-browse-dems ul").empty();
+;
 
-//   var name, party, office, phone, moreInfoBtn, nameList, txt, district, state;
-
-
-//   for(var i = 0; i < model.stateRequestArr[0].results.length; i++){
-
-//       if(model.stateRequestArr[0].results[i].office.includes("Senate") == false){
-
-//         model.houseMembers.push(model.stateRequestArr[0].results[i]);
-
-//         name = $("<h5></h5>").text(model.stateRequestArr[0].results[i].name);
-//         party = $("<p></p>").text(model.stateRequestArr[0].results[i].party);
-//         office = $("<p></p>").text(model.stateRequestArr[0].results[i].office);
-//         phone = $("<p></p>").text(model.stateRequestArr[0].results[i].phone);
-//         moreInfoBtn = $("<button></button>")
-//           .text("More Info")
-//           .attr('id', i)
-//           .attr('class', 'moreInfo')
-//         nameList = $("<li></li>")
-//           .append(name, party, office, phone, moreInfoBtn,'<hr>');
-//         $('#section-browse-dems ul').append(nameList);
-
-//       } else {
-//           console.log("senate");
-//       }
-//     }
-//     //once button is clicked, district number, and state are sent to the first propublica api call
-//     //more info button
-//     $("#section-browse-dems").on('click', '.moreInfo', function(event) {
-
-//       district = this.id;
-//       state = this.id;
-//       district = model.houseMembers[district].district;
-//       state = model.houseMembers[state].state;
-//       proPublicaCallOne(district, state);
-//       timesCall(name.text());
-//       event.preventDefault();
-//     });
-// };
-
-
-function render(){
-
-  $("#section-browse-dems ul").empty();
-
-        var name, party, phone, email;
-
-        name = $("<h5></h5>").text(model.googleCivics[0].name);
-        party = $("<p></p>").text(model.googleCivics[0].party);
-        phone = $("<p></p>").text(model.googleCivics[0].phones[0]);
-        // email = $("<p></p>").text(model.googleCivics[0].emails[0]);
-        moreInfoBtn = $("<button></button>")
-          .text("More Info")
-          // .attr('id', i)
-          .attr('class', 'moreInfo')
-        nameList = $("<li></li>")
-          .append(name, party, phone, email, moreInfoBtn, '<hr>');
-        $('#section-browse-dems ul').append(nameList);
-
-    // }
-    //once button is clicked, district number, and state are sent to the first propublica api call
-    //more info button
-    $("#section-browse-dems").on('click', '.moreInfo', function(event) {
-
-      // district = this.id;
-      // state = this.id;
-      // district = model.houseMembers[district].district;
-      // state = model.houseMembers[state].state;
-      // proPublicaCallOne(district, state);
-      // timesCall(name.text());
-      openModal();
-      event.preventDefault();
-    });
-};
-
-//the modal is opened, and gets all the needed info from the proPublica2 array
+//the modal is opened, and gets all the needed info from the googleCivics array
 //rendering it on the page.
 function openModal(){
-  var name, nextElection, party,
-      phone, officeAddress, city,
-      state, zip, fullAddress, twitter, infoList;
+  var name, party, phone,
+      officeAddress, city, state,
+      zip, fullAddress, twitter, infoList;
 
   $("#myModalLabel").empty();
   $("#modalBody ul").empty();
 
-  // name = $("<h3></h3>").text(model.proPublica1[0].name);
-  // nextElection = $("<p></p>").text(model.proPublica1[0].next_election);
   name = $("<h3></h3>").text(model.googleCivics[0].name);
   party = $("<p></p>").text(model.googleCivics[0].party);
   phone = $("<p></p>").text(model.googleCivics[0].phones[0]);
@@ -199,14 +100,6 @@ function openModal(){
   twitter = $("<p></p>").text(model.googleCivics[0].channels[1].id);
 
   fullAddress = $("<p></p>").text(officeAddress.text() + '\n ' + city.text() + ' ' + state.text() + '\n' + zip.text());
-
-
-  // web = $("<p></p>").text(model.proPublica2[0].url);
-  // chamber = $("<p></p>").text(model.proPublica2[0].roles[0].chamber);
-  // percent = $("<p></p>").text(model.proPublica2[0].roles[0].votes_with_party_pct);
-  // party = $("<p></p>").text(model.proPublica2[0].roles[0].party);
-  // phone = $("<p></p>").text(model.proPublica2[0].roles[0].phone);
-
   infoList = $("<li></li>")
     .append(
             "Party: ", party,

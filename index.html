@@ -8,75 +8,78 @@
   <link rel="stylesheet" href="bower_components/chartist/dist/chartist.min.css">
   <link rel="stylesheet" href="css/scrolling-nav.css">
   <link rel="stylesheet" href="css/style.css">
-  <title>97%</title>
+  <title>97% REFACTORED</title>
 </head>
 <body>
 
-  <nav class="navbar navbar-default navbar-fixed-top custom_nav" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#landing">97 Percent</a>
-            </div>
+  <div id="frontPage" class="container-fluid">
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden active">
-                        <a class="page-scroll" href="#page-top"></a>
-                    </li>
-                    <li class="">
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li class="">
-                        <a class="page-scroll" href="#about">Find Your Rep</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+    <nav class="navbar navbar-default navbar-fixed-top custom_nav" role="navigation">
+      <div class="container">
+        <div class="navbar-header page-scroll">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand page-scroll" href="#landing">97 Percent</a>
         </div>
-        <!-- /.container -->
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li class="hidden active">
+              <a class="page-scroll" href="#page-top"></a>
+            </li>
+            <li class="">
+              <a class="page-scroll" href="#about">About</a>
+            </li>
+            <li class="">
+              <a class="page-scroll" href="#about">Find Your Rep</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
+  <div id="landingPage" class="container-fluid text-center">
 
-
-  <header class="jumbotron" id="landing">
     <h1>97%</h1>
-    <p class="text-muted" id="subHead">Of members in the House of Representatives got re-elected in 2016...</p>
-    <p id="yes">yes, you read that right</p>
+    <p class="text-muted" id="subHead">
+      Of members in the House of Representatives were re-elected in 2016...
+    </p>
+    <p id="subHead2">
+      yes, you read that right
+    </p>
+
     <div class="ct-chart ct-double-octave" id="chart"></div>
     <div id="squares">
       <p class="sqText">Re-Elected: </p>
       <div id="blueSquare"></div>
-      <p class="sqText" id="appText">Approval Rating: </p>
+      <p class="sqText">Approval Rating: </p>
       <div id="redSquare"></div>
     </div>
-    <a class="btn btn-default page-scroll" href="#mainPage">MORE</a>
-  </header>
+    <a class="btn btn-default page-scroll" href="#about">MORE</a>
+  </div>
+</div>
+<!-- LANDING PAGE ENDS -->
 
-  <!-- about page -->
-    <div class="container">
-      <div class="row">
-        <div id="mainPage">
-        <ul id="countdown">
+<!-- ABOUT PAGE BEGINS -->
+
+<div id="about" class="container-fluid">
+  <div class="row">
+    <ul id="countdown">
         <p id="clock"></p>
           <li>Until the midterm election</li>
           <li>Get Educated...</li>
           <li>Get Angry...</li>
           <li>GET INVOLVED!</li>
-        </ul>
-
-
-          <article class="col-md-6" id="about">
+      </ul>
+<div class="container" id="factsSearch">
+      <article class="col-md-6">
 
               <ul id="info-list">
               <h3 class="aboutHeaders">Fun Facts</h3>
@@ -88,38 +91,23 @@
               </ul>
           </article>
 
-
-
-          <div class="col-md-6 repSearch">
-            <h3 id="findRep" class="aboutHeaders">Find Your Rep by Address</h3>
+      <div class="col-md-6 repSearch">
+            <h3 id="findRep" class="aboutHeaders">Find Your Rep!</h3>
 
             <form id="form-search">
-              <label>Street Address</label><input type="text" name="query">
-              <label>City</label><input type="text" name="query">
-              <label>State</label><input type="text" name="query">
-              <label>Zip</label><input type="text" name="query">
-              <input type="submit" value="Search"/>
+            <ul id="form-style">
+              <li><label class="formLabel">Street Address</label><input type="text" class="field-long" name="query"></li>
+              <li><label class="formLabel">City</label><input type="text" class="field-long" name="query"></li>
+              <li><label class="formLabel">State</label><input type="text" class="field-long" name="query"></li>
+              <li><label class="formLabel">Zip</label><input type="text" class="field-long" name="query"></li>
+              <li><input type="submit" value="Search"/></li>
+            </ul>
             </form>
-
-              <section id="section-browse-dems" class="col-md-6">
-            <header></header>
-            <ul></ul>
-          </section>
           </div>
+</div>
+  </div>
+</div>
 
-
-        </div>
-
-      </div>
-    </div>
-<!-- Button trigger modal -->
-
-
-
-
-
-
-<!-- INFO Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -137,8 +125,6 @@
     </div>
   </div>
 </div>
-
-
 
 <!-- Footer -->
     <footer class="footer">
@@ -168,13 +154,8 @@
       var city = query[1].value;
       var state = query[2].value;
       var zip = query[3].value;
-      googleCivicsSearch(line1, city, state, zip, render);
+      googleCivicsSearch(line1, city, state, zip, openModal);
     });
   </script>
 </body>
 </html>
-
-
-
-
-
